@@ -9,10 +9,10 @@ script:
   - docker run -e CI=true dmpelletier1989/complex npm run test
 
 after_success: 
-  - docker build -t dmpelletier1989/complex-client -f ./client .
-  - docker build -t dmpelletier1989/complex-nginx -f ./nginx .
-  - docker build -t dmpelletier1989/complex-server -f ./server .
-  - docker build -t dmpelletier1989/complex-worker -f ./worker .
+  - docker build -t dmpelletier1989/complex-client -f ./client
+  - docker build -t dmpelletier1989/complex-nginx -f ./nginx
+  - docker build -t dmpelletier1989/complex-server -f ./server
+  - docker build -t dmpelletier1989/complex-worker -f ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push dmpelletier1989/complex-client
   - docker push dmpelletier1989/complex-nginx
