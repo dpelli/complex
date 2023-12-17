@@ -13,15 +13,20 @@ after_success:
   - docker build -t dmpelletier1989/complex-nginx -f ./nginx .
   - docker build -t dmpelletier1989/complex-server -f ./server .
   - docker build -t dmpelletier1989/complex-worker -f ./worker .
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push dmpelletier1989/complex-client
+  - docker push dmpelletier1989/complex-nginx
+  - docker push dmpelletier1989/complex-server
+  - docker push dmpelletier1989/complex-worker
 
-deploy:
-  provider: elasticbeanstalk
-  region: "us-east-1"
-  app: "complex"
-  env: "Complex-env"
-  bucket_name: "elasticbeanstalk-us-east-1-130312206770"
-  bucket_path: "complex"
-  on:
-    branch: main
-  access_key_id: $AWS_ACCESS_KEY
-  secret_access_key: "$AWS_SECRET_KEY"
+# deploy:
+#   provider: elasticbeanstalk
+#   region: "us-east-1"
+#   app: "complex"
+#   env: "Complex-env"
+#   bucket_name: "elasticbeanstalk-us-east-1-130312206770"
+#   bucket_path: "complex"
+#   on:
+#     branch: main
+#   access_key_id: $AWS_ACCESS_KEY
+#   secret_access_key: "$AWS_SECRET_KEY"
