@@ -32,6 +32,9 @@ class Fib extends Component {
       index: this.state.index,
     });
     this.setState({ index: '' });
+
+    await this.fetchValues();
+    await this.fetchIndexes();
   };
 
   renderSeenIndexes() {
@@ -44,7 +47,7 @@ class Fib extends Component {
     for (let key in this.state.values) {
       entries.push(
         <div key={key}>
-          For index {key} I calculated {this.state.values[key]}
+          For index {key}, I calculated {this.state.values[key]}
         </div>
       );
     }
