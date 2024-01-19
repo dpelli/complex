@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Fib.css';
 import axios from 'axios';
 
 class Fib extends Component {
@@ -59,19 +60,35 @@ class Fib extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <label>Enter your index:</label>
+          <h1>Enter a number:</h1>
           <input
+            type="text"
             value={this.state.index}
             onChange={(event) => this.setState({ index: event.target.value })}
           />
-          <button>Submit</button>
+          <button type="submit">Submit</button>
         </form>
 
-        <h3>Indexes I have seen:</h3>
-        {this.renderSeenIndexes()}
+        {/* <table>
+          <tr>
+            <th>Indexes</th>
+            <th>Calculated Values</th>
+          </tr>
+          <tr>
+            <td>Alfreds Futterkiste</td>
+            <td>Maria Anders</td>
+          </tr>
+          <tr>
+            <td>Centro comercial Moctezuma</td>
+            <td>Francisco Chang</td>
+          </tr>
+        </table> */}
 
-        <h3>Calculated Values:</h3>
-        {this.renderValues()}
+        <h1>Numbers I've seen:</h1>
+        <h3>{this.renderSeenIndexes()}</h3>
+
+        <h1>Calculated Values:</h1>
+        <h3>{this.renderValues()}</h3>
       </div>
     );
   }
